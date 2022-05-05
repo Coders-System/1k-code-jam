@@ -3,3 +3,4 @@ flask-sqlalchemy
 pymysql
 flask-migrate
 python-dotenv
+git+https://github.com/ahnaf-zamil/zenora
