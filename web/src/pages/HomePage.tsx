@@ -22,31 +22,36 @@ export function HomePage() {
   }, []);
 
   return (
-    <>
+    <div className="h-screen flex flex-col">
       <Navbar />
-      <main>
-        <h1>
-          1K Members <span>CODEJAM</span>
+
+      <main className="w-full px-6 mb-auto">
+        <h1 className="font-heading text-4xl text-center leading-relaxed">
+          1K Members <span className="text-orange">CODEJAM</span>
         </h1>
         <Button
+          className="mt-2 mx-auto font-bold"
           onClick={() => (oauthURL ? (window.location.href = oauthURL) : null)}
         >
           Register Now
         </Button>
 
-        <Section heading="Discord">
+        <Section className="mt-16 mb-8" heading="Discord">
           <Button href={DISCORD_INVITE_URL}>Join Coder's System</Button>
         </Section>
 
-        <Section heading="Prizes">
-          {prizes.map((p) => (
-            <PrizeCard prize={p} />
-          ))}
+        <Section className="mb-8" heading="Prizes">
+          <div className="flex gap-3 flex-col">
+            {prizes.map((p) => (
+              <PrizeCard prize={p} />
+            ))}
+          </div>
         </Section>
-        <Section heading="Rules">
-          <ul>
+
+        <Section className="mb-8" heading="Rules">
+          <ul className="ml-6 mt-4 list-disc w-full">
             {rules.map((p) => (
-              <li>
+              <li className="">
                 <p>{p}</p>
               </li>
             ))}
@@ -54,7 +59,7 @@ export function HomePage() {
         </Section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
@@ -63,10 +68,10 @@ interface PrizeCardProps {
 }
 export function PrizeCard({ prize }: PrizeCardProps) {
   return (
-    <div>
-      <p># {prize.position}</p>
-      <img src={prize.prizeIcon} alt="prize icon" />
-      <p>{prize.prizeText}</p>
+    <div className="bg-lightOrange text-gray-800 rounded-md flex p-3 gap-3 items-center">
+      <p className="font-heading text-purple text-lg">#{prize.position}</p>
+      <img className="w-8 h-8" src={prize.prizeIcon} alt="prize icon" />
+      <p className="">{prize.prizeText}</p>
     </div>
   );
 }

@@ -10,17 +10,17 @@ export interface Prize {
 export const prizes: Prize[] = [
   {
     position: 1,
-    prizeIcon: "discord.png",
+    prizeIcon: "discord.svg",
     prizeText: "Discord Nitro",
   },
   {
     position: 2,
-    prizeIcon: "discord.png",
+    prizeIcon: "discord.svg",
     prizeText: "Discord Nitro",
   },
   {
     position: 3,
-    prizeIcon: "discord.png",
+    prizeIcon: "discord.svg",
     prizeText: "Discord Nitro",
   },
 ];
