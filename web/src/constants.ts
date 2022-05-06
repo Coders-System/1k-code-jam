@@ -1,4 +1,5 @@
 export const DISCORD_INVITE_URL = "";
+export const API_ENDPOINT = "http://localhost:5000";
 
 export interface Prize {
   position: number;

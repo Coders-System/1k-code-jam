@@ -1,4 +1,4 @@
-from app.main import create_app
+from app.main import *  # Importing migrate for flask_migrate
 
 app = create_app()
 

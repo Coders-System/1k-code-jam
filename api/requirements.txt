@@ -3,4 +3,7 @@ flask-sqlalchemy
 pymysql
 flask-migrate
 python-dotenv
-git+https://github.com/ahnaf-zamil/zenora
+requests
+zenora
+flask-cors
+python-jose[cryptography]
