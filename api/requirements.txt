@@ -7,3 +7,4 @@ requests
 zenora
 flask-cors
 python-jose[cryptography]
+gunicorn

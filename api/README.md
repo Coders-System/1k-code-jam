@@ -12,3 +12,11 @@ Route prefix: `/users`
 | `/oauth/callback` | `POST` | Callback handler for Oauth logins |
 | `/logout`         | `POST` | Logs out the user                 |
 | `/@me`            | `GET`  | Gets the currently logged in user |
+
+## Submission routes
+
+Route prefix: `/submissions`
+
+| Endpoint | Method | Description                                                 |
+| -------- | ------ | ----------------------------------------------------------- |
+| `/time`  | `GET`  | Returns the remaining milliseconds till submission deadline |

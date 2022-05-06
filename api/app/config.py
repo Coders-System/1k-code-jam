@@ -1,5 +1,6 @@
 from urllib.parse import quote
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 
 load_dotenv()
@@ -8,6 +9,7 @@ load_dotenv()
 class AppConfig:
     SECRET_KEY = os.environ["SECRET_KEY"]
     SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URI"]
+    SUBMIT_DATE = datetime(2022, 5, 14, hour=20)  # Just an example: 7pm, 14th May, 2022
 
 
 class OauthConfig:
