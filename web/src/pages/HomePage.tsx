@@ -25,7 +25,7 @@ export function HomePage() {
     <div className="h-screen flex flex-col">
       <Navbar />
 
-      <main className="w-full px-6 mb-auto">
+      <main className="w-full px-6 lg:px-48 mb-auto">
         <h1 className="font-heading text-4xl text-center leading-relaxed">
           1K Members <span className="text-orange">CODEJAM</span>
         </h1>
@@ -41,7 +41,7 @@ export function HomePage() {
         </Section>
 
         <Section className="mb-8" heading="Prizes">
-          <div className="flex gap-3 flex-col">
+          <div className="flex gap-3 flex-col lg:flex-row">
             {prizes.map((p) => (
               <PrizeCard prize={p} />
             ))}
