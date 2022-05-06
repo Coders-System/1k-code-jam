@@ -11,3 +11,4 @@ Route prefix: `/users`
 | `/oauth/url`      | `GET`  | Returns the Oauth login URL       |
 | `/oauth/callback` | `POST` | Callback handler for Oauth logins |
 | `/logout`         | `POST` | Logs out the user                 |
+| `/@me`            | `GET`  | Gets the currently logged in user |

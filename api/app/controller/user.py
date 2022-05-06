@@ -1,11 +1,22 @@
-from flask import Blueprint, make_response, request
+from flask import Blueprint, make_response, request, g
 from datetime import datetime, timedelta
+
+from ..util.oauth import login_required
 from ..config import OauthConfig, AppConfig
 from ..model import User
 from ..service import UserService
 from jose import jwt
 
+import time
+
 router = Blueprint("users", __name__, url_prefix="/users")
+
+
+@router.get("/@me")
+@login_required
+def get_logged_in_user():
+    """Returns the currently logged in user"""
+    return g.user.to_json()
 
 
 @router.get("/oauth/url")
@@ -28,7 +39,9 @@ def oauth_callback():
         user = existing_user
 
     jwt_token = jwt.encode(
-        {"user_id": user.id}, AppConfig.SECRET_KEY, algorithm="HS256"
+        {"user_id": user.id, "exp": time.time() + (1000 * 60 * 60 * 24 * 3)},
+        AppConfig.SECRET_KEY,
+        algorithm="HS256",
     )
 
     resp = make_response("Logged in")
