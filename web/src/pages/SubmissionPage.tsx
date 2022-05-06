@@ -13,6 +13,7 @@ export function SubmissionPage() {
         <h1 className="font-heading text-xl text-center">
           Participant Dashboard
         </h1>
+
         <Timer />
 
         <SubmissionForm />
