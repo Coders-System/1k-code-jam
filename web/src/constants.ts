@@ -23,12 +23,12 @@ export const prizes: Prize[] = [
 ];
 
 export const rules: string[] = [
-  "No development/coding may start before the actual date and time of the Code Jam",
-  "Your project must be solo, you cannot have a teammate",
-  "You are allowed to use third party tools and libraries, but try your best to write most of the code",
-  "Should you use any open source tools or libraries, you must attribute them",
-  "Your project must be open sourced on GitHub so that we can review it",
-  "If you do not win a prize, please do not be salty or rage. We all lose sometimes",
-  "Be respectful to other participants and to staff",
+  "No development/coding may start before the actual date and time of the Code Jam.",
+  "Your project must be solo, you cannot have a teammate.",
+  "You are allowed to use third party tools and libraries, but try your best to write most of the code.",
+  "Should you use any open source tools or libraries, you must attribute them.",
+  "Your project must be open sourced on GitHub so that we can review it.",
+  "If you do not win a prize, please do not be salty or rage. We all lose sometimes.",
+  "Be respectful to other participants and to staff.",
   "Enjoy the code jam :)",
 ];
