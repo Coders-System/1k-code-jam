@@ -1,13 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { SubmissionSupport } from "../components/SubmissionSupport";
 import { Timer } from "../components/Timer";
+import {httpClient} from "../http";
+import {ApiRoutes} from "../http/routes";
 
 export function SubmissionPage() {
   const [isProjectSubmitted, setIsProjectSubmitted] = useState(false);
   const [remaining, setRemaining] = useState([0, 0, 0, 0, 0]);
+
+  const [countdown,setCountdown] = useState(0);
+
+  useEffect( () => {
+
+      const loadTime =async  () => {
+const a = (await httpClient.get(ApiRoutes.TIME)).data
+return a
+      }
+
+      loadTime().then(e => {
+          console.log(e.remaining)
+          setCountdown(e.remaining)
+      })
+  },[])
 
   const isTimeOver = () => {
     return (
@@ -25,7 +42,7 @@ export function SubmissionPage() {
           Participant Dashboard
         </h1>
 
-        <Timer onCountdown={(r) => setRemaining(r)} countdown={5000} />
+        <Timer onCountdown={(r) => setRemaining(r)} countdown={countdown} />
 
         {!isProjectSubmitted && isTimeOver() ? (
           <Timeover />
