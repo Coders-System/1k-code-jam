@@ -2,7 +2,7 @@ import { DISCORD_INVITE_URL, SERVER_LOGO } from "../constants";
 
 export function Navbar() {
   return (
-    <nav className="bg-darkPurple container mx-auto py-3 flex items-center justify-between">
+    <nav className="bg-darkPurple container mx-auto px-2 py-3 flex items-center justify-between">
       <div className="flex items-center gap-3">
         <img src={SERVER_LOGO} className="rounded-full h-10" alt="" />
         <p className="text-lg">Coder's System</p>
