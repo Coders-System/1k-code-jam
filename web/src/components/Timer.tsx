@@ -9,6 +9,10 @@ export function Timer({
 }) {
   const [remaining, setRemaining] = useState([0, 0, 0, 0]);
 
+  const isWarningTime = () => {
+    return remaining[0] === 0 && remaining[1] === 0;
+  };
+
   useEffect(() => {
     let countDown = countdown;
     const i = setInterval(() => {
@@ -38,7 +42,7 @@ export function Timer({
   return (
     <p
       className={`font-heading my-12 text-center text-3xl ${
-        remaining[0] == 0 && remaining[1] == 0 ? "text-red-500" : ""
+        isWarningTime() ? "text-red-500" : ""
       }`}
     >{`${remaining.join(" : ")}`}</p>
   );
