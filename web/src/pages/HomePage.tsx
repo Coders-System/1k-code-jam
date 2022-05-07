@@ -30,7 +30,7 @@ export function HomePage() {
       >
         <p className="text-lg">Coder's System presents</p>
         <h1 className="font-heading mt-2 text-7xl text-center">
-          1K Members <span className="text-orange">CODEJAM</span>
+          1K Members <span className="text-orange">CODE JAM</span>
         </h1>
         <div className="flex gap-4 mt-8">
           <Button
