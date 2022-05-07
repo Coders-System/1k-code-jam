@@ -43,7 +43,7 @@ export function HomePage() {
           <Button href={DISCORD_INVITE_URL}>Join The Discord</Button>
         </div>
       </section>
-      <main className="w-full container mx-auto mb-auto mt-10">
+      <main className="w-full container px-2 mx-auto mb-auto mt-10">
         <Section
           className="flex flex-col items-center mb-8 w-full"
           heading="Prizes"
@@ -59,9 +59,9 @@ export function HomePage() {
           className="flex flex-col items-center mb-8 w-full pt-8"
           heading="Rules"
         >
-          <ul className="ml-6 mt-4 list-disc w-full">
+          <ul className="mt-4 list-disc ml-6">
             {rules.map((p) => (
-              <li className="text-lg ">
+              <li className="lg:text-lg my-2">
                 <p>{p}</p>
               </li>
             ))}
