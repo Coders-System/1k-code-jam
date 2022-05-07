@@ -9,7 +9,7 @@ interface SectionProps {
 export function Section({ className, children, heading }: SectionProps) {
   return (
     <section className={className}>
-      <h2 className="font-heading text-xl mb-2">{heading}</h2>
+      <h2 className="font-heading text-5xl mb-4">{heading}</h2>
       <div>{children}</div>
     </section>
   );

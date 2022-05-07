@@ -22,36 +22,46 @@ export function HomePage() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="flex flex-col bg-darkPurple">
       <Navbar />
-
-      <main className="w-full px-6 lg:px-48 mb-auto">
-        <h1 className="font-heading text-4xl text-center leading-relaxed">
+      <section
+        id="hero"
+        className="h-[85vh] flex items-center flex-col justify-center"
+      >
+        <p className="text-lg">Coder's System presents</p>
+        <h1 className="font-heading mt-2 text-7xl text-center">
           1K Members <span className="text-orange">CODEJAM</span>
         </h1>
-        <Button
-          className="mt-2 mx-auto font-bold"
-          onClick={() => (oauthURL ? (window.location.href = oauthURL) : null)}
+        <div className="flex gap-4 mt-8">
+          <Button
+            onClick={() =>
+              oauthURL ? (window.location.href = oauthURL) : null
+            }
+          >
+            Register Now
+          </Button>
+          <Button href={DISCORD_INVITE_URL}>Join The Discord</Button>
+        </div>
+      </section>
+      <main className="w-full container mx-auto mb-auto mt-10">
+        <Section
+          className="flex flex-col items-center mb-8 w-full"
+          heading="Prizes"
         >
-          Register Now
-        </Button>
-
-        <Section className="mt-16 mb-8" heading="Discord">
-          <Button href={DISCORD_INVITE_URL}>Join Coder's System</Button>
-        </Section>
-
-        <Section className="mb-8" heading="Prizes">
-          <div className="flex gap-3 flex-col lg:flex-row">
+          <div className="flex mt-4 gap-8 flex-col lg:flex-row">
             {prizes.map((p) => (
               <PrizeCard prize={p} />
             ))}
           </div>
         </Section>
 
-        <Section className="mb-8" heading="Rules">
+        <Section
+          className="flex flex-col items-center mb-8 w-full pt-8"
+          heading="Rules"
+        >
           <ul className="ml-6 mt-4 list-disc w-full">
             {rules.map((p) => (
-              <li className="">
+              <li className="text-lg ">
                 <p>{p}</p>
               </li>
             ))}
@@ -68,10 +78,13 @@ interface PrizeCardProps {
 }
 export function PrizeCard({ prize }: PrizeCardProps) {
   return (
-    <div className="bg-lightOrange text-gray-800 rounded-md flex p-3 gap-3 items-center">
+    <div
+      id="prize-card"
+      className="cursor-pointer transition duration-200 bg-lightOrange text-gray-800 shadow rounded-md flex px-6 py-4 gap-3 items-center"
+    >
       <p className="font-heading text-purple text-lg">#{prize.position}</p>
       <img className="w-8 h-8" src={prize.prizeIcon} alt="prize icon" />
-      <p className="">{prize.prizeText}</p>
+      <p>{prize.prizeText}</p>
     </div>
   );
 }
