@@ -25,13 +25,10 @@ export function SubmissionPage() {
           Participant Dashboard
         </h1>
 
-        <Timer
-          onCountdown={(r) => setRemaining(r)}
-          countdown={5000}
-        />
+        <Timer onCountdown={(r) => setRemaining(r)} countdown={5000} />
 
         {!isProjectSubmitted && isTimeOver() ? (
-            <Timeover />
+          <Timeover />
         ) : !isProjectSubmitted ? (
           <SubmissionForm onSubmit={() => setIsProjectSubmitted(true)} />
         ) : (
@@ -55,7 +52,7 @@ function Thanks() {
 function Timeover() {
   return (
     <p className="text-center mb-8">
-    Time has run out. If you have something to say, contact support
+      Time has run out. If you have something to say, contact support
     </p>
   );
 }

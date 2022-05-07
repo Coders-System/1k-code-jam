@@ -23,11 +23,10 @@ export function Timer({
       setRemaining([days, hours, minutes, seconds]);
       onCountdown([days, hours, minutes, seconds]);
 
-
-      if (countDown >=1000){
-          countDown -= 1000;
+      if (countDown >= 1000) {
+        countDown -= 1000;
       } else {
-          clearInterval(i)
+        clearInterval(i);
       }
     }, 1000);
 
