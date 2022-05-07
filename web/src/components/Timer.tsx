@@ -10,14 +10,15 @@ function nD() {
   return d.getTime();
 }
 
-export function Timer() {
+export function Timer({countdown}:{countdown: number}) {
   // UNIX Timestamp (ms)
   const [deadline, setDeadline] = useState(nD());
   const [remaining, setRemaining] = useState([0, 0, 0, 0, 0]);
 
   useEffect(() => {
+    let countDown = countdown;
     const i = setInterval(() => {
-      const countDown = deadline - new Date().getTime();
+      //const countDown = deadline - new Date().getTime();
 
       // calculate time left
       const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
@@ -28,6 +29,7 @@ export function Timer() {
       const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
 
       setRemaining([days, hours, minutes, seconds]);
+      countDown -= 1000;
     }, 1000);
 
     return () => {

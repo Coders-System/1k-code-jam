@@ -29,7 +29,7 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 
   useEffect(() => {
     setTimeout(() => {
-      setAuth(null);
+      setAuth("as");
       setPending(false);
     }, 400);
   }, []);
