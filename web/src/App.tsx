@@ -32,7 +32,7 @@ function RequireAuth({ children }: { children: JSX.Element }) {
   useEffect(() => {
     setTimeout(async () => {
       try {
-          const userId = (await httpClient.get(ApiRoutes.ME)).data.id;
+        const userId = (await httpClient.get(ApiRoutes.ME)).data.id;
         console.log(userId);
         setAuth(userId);
       } catch (e) {
