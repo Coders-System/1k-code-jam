@@ -6,7 +6,6 @@ import { SubmissionSupport } from "../components/SubmissionSupport";
 import { Timer } from "../components/Timer";
 
 export function SubmissionPage() {
-
   const [isProjectSubmitted, setIsProjectSubmitted] = useState(false);
 
   return (
@@ -17,10 +16,13 @@ export function SubmissionPage() {
           Participant Dashboard
         </h1>
 
-        <Timer countdown={24 * 60 * 60 * 1000}/>
+        <Timer countdown={24 * 60 * 60 * 1000} />
 
-        {!isProjectSubmitted ? <SubmissionForm onSubmit={() => setIsProjectSubmitted(true)}/>
-        : <Thanks /> }
+        {!isProjectSubmitted ? (
+          <SubmissionForm onSubmit={() => setIsProjectSubmitted(true)} />
+        ) : (
+          <Thanks />
+        )}
 
         <SubmissionSupport />
       </main>
@@ -31,11 +33,13 @@ export function SubmissionPage() {
 
 function Thanks() {
   return (
-    <p className="text-center mb-8">Thank you for participating in our code jam!</p>
+    <p className="text-center mb-8">
+      Thank you for participating in our code jam!
+    </p>
   );
 }
 
-function SubmissionForm({onSubmit}:{onSubmit: () => void}) {
+function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
   const [name, setName] = useState("");
   const [techStack, setTechStack] = useState("");
   const [description, setDescription] = useState("");
@@ -76,7 +80,7 @@ function SubmissionForm({onSubmit}:{onSubmit: () => void}) {
             description,
             videoLink,
           });
-          onSubmit()
+          onSubmit();
         }}
         className="mt-3 w-full"
       >

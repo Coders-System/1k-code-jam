@@ -10,7 +10,7 @@ function nD() {
   return d.getTime();
 }
 
-export function Timer({countdown}:{countdown: number}) {
+export function Timer({ countdown }: { countdown: number }) {
   // UNIX Timestamp (ms)
   const [deadline, setDeadline] = useState(nD());
   const [remaining, setRemaining] = useState([0, 0, 0, 0, 0]);
