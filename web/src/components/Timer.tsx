@@ -1,25 +1,17 @@
 import { useEffect, useState } from "react";
 
-function calc(dateA: Date, dateB: Date) {
-  return Math.floor(dateA.getTime() - dateB.getTime());
-}
-
-function nD() {
-  const d = new Date();
-  d.setDate(9);
-  return d.getTime();
-}
-
-export function Timer({ countdown }: { countdown: number }) {
-  // UNIX Timestamp (ms)
-  const [deadline, setDeadline] = useState(nD());
-  const [remaining, setRemaining] = useState([0, 0, 0, 0, 0]);
+export function Timer({
+  countdown,
+  onCountdown,
+}: {
+  countdown: number;
+  onCountdown: (a: [number, number, number, number]) => void;
+}) {
+  const [remaining, setRemaining] = useState([0, 0, 0, 0]);
 
   useEffect(() => {
     let countDown = countdown;
     const i = setInterval(() => {
-      //const countDown = deadline - new Date().getTime();
-
       // calculate time left
       const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
@@ -29,7 +21,14 @@ export function Timer({ countdown }: { countdown: number }) {
       const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
 
       setRemaining([days, hours, minutes, seconds]);
-      countDown -= 1000;
+      onCountdown([days, hours, minutes, seconds]);
+
+
+      if (countDown >=1000){
+          countDown -= 1000;
+      } else {
+          clearInterval(i)
+      }
     }, 1000);
 
     return () => {
@@ -38,8 +37,10 @@ export function Timer({ countdown }: { countdown: number }) {
   }, []);
 
   return (
-    <p className="font-heading my-12 text-center text-3xl">{`${remaining.join(
-      " : "
-    )}`}</p>
+    <p
+      className={`font-heading my-12 text-center text-3xl ${
+        remaining[0] == 0 && remaining[1] == 0 ? "text-red-500" : ""
+      }`}
+    >{`${remaining.join(" : ")}`}</p>
   );
 }

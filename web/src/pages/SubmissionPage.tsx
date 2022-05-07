@@ -7,6 +7,15 @@ import { Timer } from "../components/Timer";
 
 export function SubmissionPage() {
   const [isProjectSubmitted, setIsProjectSubmitted] = useState(false);
+  const [remaining, setRemaining] = useState([0, 0, 0, 0, 0]);
+
+  const isTimeOver = () => {
+    return (
+      remaining.reduce((p, c) => {
+        return (p += c);
+      }) == 0
+    );
+  };
 
   return (
     <div className="h-screen flex flex-col">
@@ -16,9 +25,14 @@ export function SubmissionPage() {
           Participant Dashboard
         </h1>
 
-        <Timer countdown={24 * 60 * 60 * 1000} />
+        <Timer
+          onCountdown={(r) => setRemaining(r)}
+          countdown={5000}
+        />
 
-        {!isProjectSubmitted ? (
+        {!isProjectSubmitted && isTimeOver() ? (
+            <Timeover />
+        ) : !isProjectSubmitted ? (
           <SubmissionForm onSubmit={() => setIsProjectSubmitted(true)} />
         ) : (
           <Thanks />
@@ -35,6 +49,13 @@ function Thanks() {
   return (
     <p className="text-center mb-8">
       Thank you for participating in our code jam!
+    </p>
+  );
+}
+function Timeover() {
+  return (
+    <p className="text-center mb-8">
+    Time has run out. If you have something to say, contact support
     </p>
   );
 }
