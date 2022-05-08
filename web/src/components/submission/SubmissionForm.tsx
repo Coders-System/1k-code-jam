@@ -7,7 +7,6 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
   const [techStack, setTechStack] = useState("");
   const [description, setDescription] = useState("");
   const [videoLink, setVideoLink] = useState("");
-  // TODO update
   const [sourceLink, setSourceLink] = useState("");
   return (
     <form className="my-8 w-full xl:w-8/12 mx-auto">
@@ -37,7 +36,7 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
           placeholder="Link to your project showcase video"
         />
         <FormInput
-          onEdit={(s) => setVideoLink(s)}
+          onEdit={(s) => setSourceLink(s)}
           labelName="Source Code Link: "
           placeholder="Link to your project's source code (GitHub, GitLab etc)"
         />
