@@ -49,7 +49,7 @@ export function SubmissionPage() {
           Welcome, {user?.username}#{user?.discriminator}
         </h3>
         {loading ? (
-          <p>Loading</p>
+            <></>
         ) : <>
         {(
           countdown && (
