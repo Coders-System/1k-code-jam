@@ -1,4 +1,7 @@
-["."]
+["api"]
+run ="python wsgi.py"
+
+["web"]
 build = "npm run build"
 run = "npm run start"
 fmt = "prettier --write src/"
