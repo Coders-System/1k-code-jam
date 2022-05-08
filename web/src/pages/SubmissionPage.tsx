@@ -101,6 +101,7 @@ function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
   const [techStack, setTechStack] = useState("");
   const [description, setDescription] = useState("");
   const [videoLink, setVideoLink] = useState("");
+  const [sourceLink, setSourceLink] = useState("");
   return (
     <form className="my-8 w-full xl:w-8/12 mx-auto">
       <h2 className="font-semibold text-lg my-5">
@@ -128,6 +129,11 @@ function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
           labelName="Video Link: "
           placeholder="Link to your project showcase video"
         />
+        <FormInput
+          onEdit={(s) => setVideoLink(s)}
+          labelName="Source Code Link: "
+          placeholder="Link to your project's source code (GitHub, GitLab etc)"
+        />
       </div>
       <Button
         onClick={() => {
@@ -136,6 +142,7 @@ function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
             techStack,
             description,
             videoLink,
+            sourceLink
           });
           onSubmit();
         }}
