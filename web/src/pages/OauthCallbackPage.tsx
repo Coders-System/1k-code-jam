@@ -1,16 +1,13 @@
 import { useEffect } from "react";
 import queryString from "query-string";
-import { httpClient } from "../http";
-import { ApiRoutes } from "../http/routes";
+import { sendOAuthCallback } from "../http/auth";
 
 export function OauthCallbackPage() {
   const parsedQuery = queryString.parse(window.location.search);
 
   useEffect(() => {
     const logInUser = async () => {
-      const resp = await httpClient.post(ApiRoutes.OAUTH_CALLBACK, {
-        code: parsedQuery.code,
-      });
+      const resp = await sendOAuthCallback(parsedQuery.code as string);
       if (resp.status === 200) {
         window.location.href = "/submission";
       }

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { httpClient } from "./http";
-import { ApiRoutes } from "./http/routes";
+import { getLoggedInUserId } from "./http/auth";
 import { HomePage } from "./pages/HomePage";
 import { OauthCallbackPage } from "./pages/OauthCallbackPage";
 import { SubmissionPage } from "./pages/SubmissionPage";
@@ -30,18 +29,11 @@ function RequireAuth({ children }: { children: JSX.Element }) {
   const [pending, setPending] = useState(true);
 
   useEffect(() => {
-    setTimeout(async () => {
-      try {
-        const userId = (await httpClient.get(ApiRoutes.ME)).data.id;
-        console.log(userId);
-        setAuth(userId);
-      } catch (e) {
-        console.log("asdf");
-        setAuth(null);
-      }
+    getLoggedInUserId().then((e) => {
+      setAuth(e);
 
       setPending(false);
-    }, 400);
+    });
   }, []);
 
   if (pending) {

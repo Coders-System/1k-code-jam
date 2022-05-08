@@ -1,6 +1,5 @@
 import { DISCORD_INVITE_URL, SERVER_LOGO } from "../constants";
-import { httpClient } from "../http";
-import { ApiRoutes } from "../http/routes";
+import { logout } from "../http/auth";
 import { Button } from "./Button";
 
 export function Navbar() {
@@ -25,7 +24,7 @@ export function Navbar() {
         {/* TODO Auth CTX */}
         <Button
           onClick={() => {
-            httpClient.post(ApiRoutes.LOGOUT);
+            logout();
           }}
         >
           LOGOUT

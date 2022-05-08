@@ -4,21 +4,14 @@ import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { Section } from "../components/Section";
 import { DISCORD_INVITE_URL, Prize, prizes, rules } from "../constants";
-import { httpClient } from "../http";
-import { ApiRoutes } from "../http/routes";
+import { getOAuthCallbackURL } from "../http/auth";
 
 export function HomePage() {
   // State for holding Oauth url
   const [oauthURL, setOauthUrl] = useState<string | null>();
 
   useEffect(() => {
-    const fetchOauthURL = async () => {
-      // Fetching oauth url from API
-      const resp = await httpClient.get(ApiRoutes.GET_OAUTH_URL);
-      setOauthUrl(resp.data.url);
-    };
-
-    fetchOauthURL();
+    getOAuthCallbackURL().then((url) => setOauthUrl(url));
   }, []);
 
   return (

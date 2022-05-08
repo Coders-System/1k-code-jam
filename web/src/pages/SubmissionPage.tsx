@@ -4,8 +4,7 @@ import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { SubmissionSupport } from "../components/SubmissionSupport";
 import { Timer } from "../components/Timer";
-import { httpClient } from "../http";
-import { ApiRoutes } from "../http/routes";
+import { getTimeUntilSubmission } from "../http/time";
 
 export function SubmissionPage() {
   const [isProjectSubmitted, setIsProjectSubmitted] = useState(false);
@@ -14,14 +13,9 @@ export function SubmissionPage() {
   const [countdown, setCountdown] = useState(0);
 
   useEffect(() => {
-    const loadTime = async () => {
-      const a = (await httpClient.get(ApiRoutes.TIME)).data;
-      return a;
-    };
-
-    loadTime().then((e) => {
-      console.log(e.remaining);
-      setCountdown(e.remaining);
+    getTimeUntilSubmission().then((e) => {
+      console.log(e);
+      setCountdown(e);
     });
   }, []);
 
