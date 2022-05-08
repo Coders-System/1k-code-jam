@@ -11,13 +11,15 @@ export function NotFoundPage() {
   }, []);
 
   return (
-      <div className="h-screen flex items-center flex-col justify-center ">
-        <Navbar oauthURL={oauthURL} />
-        <div className="my-auto w-full flex flex-col gap-3 items-center justify-center">
-            <h1 className="text-center text-4xl ">404 Page Not Found </h1>
-            <a  className="underline underline-offset-2" href="/">Go home</a>
-        </div>
-        <Footer />
+    <div className="h-screen flex items-center flex-col justify-center ">
+      <Navbar oauthURL={oauthURL} />
+      <div className="my-auto w-full flex flex-col gap-3 items-center justify-center">
+        <h1 className="text-center text-4xl ">404 Page Not Found </h1>
+        <a className="underline underline-offset-2" href="/">
+          Go home
+        </a>
       </div>
-  )
+      <Footer />
+    </div>
+  );
 }
