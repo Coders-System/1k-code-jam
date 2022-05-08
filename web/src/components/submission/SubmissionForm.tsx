@@ -1,6 +1,6 @@
-import {useState} from "react";
-import {Button} from "../Button";
-import {FormInput} from "./FormInput";
+import { useState } from "react";
+import { Button } from "../Button";
+import { FormInput } from "./FormInput";
 
 export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
   const [name, setName] = useState("");
