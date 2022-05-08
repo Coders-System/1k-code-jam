@@ -19,4 +19,5 @@ class User(db.Model):
             "discriminator": self.discriminator,
             "email": self.email,
             "created_at": self.created_at,
+            "submitted": self.submitted,
         }
