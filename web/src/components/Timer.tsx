@@ -15,29 +15,32 @@ export function Timer({
 
   useEffect(() => {
     let countDown = countdown;
-    let i: any =null;
-   i =  setInterval(function exec() {
+    let i: any = null;
+    i = setInterval(
+      (function exec() {
+        // calculate time left
+        const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (countDown % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
 
+        setRemaining([days, hours, minutes, seconds]);
+        onCountdown([days, hours, minutes, seconds]);
 
-      // calculate time left
-      const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
+        if (countDown >= 1000) {
+          countDown -= 1000;
+        } else {
+          clearInterval(i);
+        }
 
-      setRemaining([days, hours, minutes, seconds]);
-      onCountdown([days, hours, minutes, seconds]);
-
-      if (countDown >= 1000) {
-        countDown -= 1000;
-      } else {
-        clearInterval(i);
-      }
-
-      return exec
-    }(), 1000);
+        return exec;
+      })(),
+      1000
+    );
 
     return () => {
       clearInterval(i);

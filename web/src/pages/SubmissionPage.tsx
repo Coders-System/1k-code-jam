@@ -49,31 +49,30 @@ export function SubmissionPage() {
           Welcome, {user?.username}#{user?.discriminator}
         </h3>
         {loading ? (
-            <></>
-        ) : <>
-        {(
-          countdown && (
-            <div className="my-4">
-              <h1 className="text-center text-lg mb-2 font-semibold">
-                Time Remaining
-              </h1>
-              <Timer
-                onCountdown={(r) => setRemaining(r)}
-                countdown={countdown}
-              />
-            </div>
-          )
-        )}
-
-        {!loading && !isProjectSubmitted && isTimeOver() ? (
-          <Timeover />
-        ) : !isProjectSubmitted ? (
-          <SubmissionForm onSubmit={() => setIsProjectSubmitted(true)} />
+          <></>
         ) : (
-          <Thanks />
+          <>
+            {countdown && (
+              <div className="my-4">
+                <h1 className="text-center text-lg mb-2 font-semibold">
+                  Time Remaining
+                </h1>
+                <Timer
+                  onCountdown={(r) => setRemaining(r)}
+                  countdown={countdown}
+                />
+              </div>
+            )}
+
+            {!loading && !isProjectSubmitted && isTimeOver() ? (
+              <Timeover />
+            ) : !isProjectSubmitted ? (
+              <SubmissionForm onSubmit={() => setIsProjectSubmitted(true)} />
+            ) : (
+              <Thanks />
+            )}
+          </>
         )}
-        </>
-}
 
         <SubmissionSupport />
       </main>
