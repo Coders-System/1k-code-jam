@@ -42,8 +42,8 @@ export function HomePage() {
           heading="Prizes"
         >
           <div className="flex mt-4 gap-8 flex-col lg:flex-row">
-            {prizes.map((p) => (
-              <PrizeCard prize={p} />
+            {prizes.map((p,i) => (
+              <PrizeCard key={i} prize={p} />
             ))}
           </div>
         </Section>
@@ -53,8 +53,8 @@ export function HomePage() {
           heading="Rules"
         >
           <ul className="mt-4 list-disc ml-6">
-            {rules.map((p) => (
-              <li className="lg:text-lg my-2">
+            {rules.map((p,i) => (
+              <li key={i} className="lg:text-lg my-2">
                 <p>{p}</p>
               </li>
             ))}
