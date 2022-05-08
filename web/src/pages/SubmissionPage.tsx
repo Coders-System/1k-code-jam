@@ -10,6 +10,7 @@ import { getTimeUntilSubmission } from "../http/time";
 
 export function SubmissionPage() {
   const user = useContext(authContext);
+  const [loading, setLoading] = useState(true);
   const [isProjectSubmitted, setIsProjectSubmitted] = useState(
     user?.submitted || false
   );
@@ -21,6 +22,7 @@ export function SubmissionPage() {
     getTimeUntilSubmission().then((e) => {
       console.log(e);
       setCountdown(e);
+      setLoading(false);
     });
   }, []);
 
@@ -46,22 +48,32 @@ export function SubmissionPage() {
         <h3 className="text-2xl text-center my-8">
           Welcome, {user?.username}#{user?.discriminator}
         </h3>
-        {countdown && (
-          <div className="my-4">
-            <h1 className="text-center text-lg mb-2 font-semibold">
-              Time Remaining
-            </h1>
-            <Timer onCountdown={(r) => setRemaining(r)} countdown={countdown} />
-          </div>
+        {loading ? (
+          <p>Loading</p>
+        ) : <>
+        {(
+          countdown && (
+            <div className="my-4">
+              <h1 className="text-center text-lg mb-2 font-semibold">
+                Time Remaining
+              </h1>
+              <Timer
+                onCountdown={(r) => setRemaining(r)}
+                countdown={countdown}
+              />
+            </div>
+          )
         )}
 
-        {!isProjectSubmitted && isTimeOver() ? (
+        {!loading && !isProjectSubmitted && isTimeOver() ? (
           <Timeover />
         ) : !isProjectSubmitted ? (
           <SubmissionForm onSubmit={() => setIsProjectSubmitted(true)} />
         ) : (
           <Thanks />
         )}
+        </>
+}
 
         <SubmissionSupport />
       </main>

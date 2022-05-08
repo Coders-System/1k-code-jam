@@ -15,7 +15,10 @@ export function Timer({
 
   useEffect(() => {
     let countDown = countdown;
-    const i = setInterval(() => {
+    let i: any =null;
+   i =  setInterval(function exec() {
+
+
       // calculate time left
       const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
@@ -32,7 +35,9 @@ export function Timer({
       } else {
         clearInterval(i);
       }
-    }, 1000);
+
+      return exec
+    }(), 1000);
 
     return () => {
       clearInterval(i);
