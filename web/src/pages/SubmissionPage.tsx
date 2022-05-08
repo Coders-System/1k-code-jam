@@ -142,7 +142,7 @@ function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
             techStack,
             description,
             videoLink,
-            sourceLink
+            sourceLink,
           });
           onSubmit();
         }}
