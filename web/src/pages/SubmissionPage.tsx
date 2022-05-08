@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { Button } from "../components/Button";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
-import { SubmissionSupport } from "../components/SubmissionSupport";
+import {SubmissionForm} from "../components/submission/SubmissionForm";
+import {SubmissionSupport} from "../components/submission/SubmissionSupport";
+import {Thanks} from "../components/submission/Thanks";
+import {Timeover} from "../components/submission/Timeover";
 import { Timer } from "../components/Timer";
 import { authContext } from "../http/auth";
 import { getTimeUntilSubmission } from "../http/time";
@@ -77,113 +79,6 @@ export function SubmissionPage() {
         <SubmissionSupport />
       </main>
       <Footer />
-    </div>
-  );
-}
-
-function Thanks() {
-  return (
-    <p className="text-center mb-8">
-      Thank you for participating in our code jam!
-    </p>
-  );
-}
-function Timeover() {
-  return (
-    <p className="text-center mb-8">
-      Time has run out. If you have something to say, contact support
-    </p>
-  );
-}
-
-function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
-  const [name, setName] = useState("");
-  const [techStack, setTechStack] = useState("");
-  const [description, setDescription] = useState("");
-  const [videoLink, setVideoLink] = useState("");
-  const [sourceLink, setSourceLink] = useState("");
-  return (
-    <form className="my-8 w-full xl:w-8/12 mx-auto">
-      <h2 className="font-semibold text-lg my-5">
-        Is your project ready? <span className="font-bold">Submit Now</span>
-      </h2>
-      <div className="flex flex-col gap-3">
-        <FormInput
-          onEdit={(s) => setName(s)}
-          labelName="Project Name:"
-          placeholder="Enter your project's name"
-        />
-        <FormInput
-          onEdit={(s) => setTechStack(s)}
-          labelName="Tech stack:"
-          placeholder="Enter the technologies used in your project"
-        />
-        <FormInput
-          onEdit={(s) => setDescription(s)}
-          labelName="Description: "
-          placeholder="Enter your project's description"
-          isTextArea={true}
-        />
-        <FormInput
-          onEdit={(s) => setVideoLink(s)}
-          labelName="Video Link: "
-          placeholder="Link to your project showcase video"
-        />
-        <FormInput
-          onEdit={(s) => setVideoLink(s)}
-          labelName="Source Code Link: "
-          placeholder="Link to your project's source code (GitHub, GitLab etc)"
-        />
-      </div>
-      <Button
-        onClick={() => {
-          console.log({
-            name,
-            techStack,
-            description,
-            videoLink,
-            sourceLink,
-          });
-          onSubmit();
-        }}
-        className="mt-6 w-full"
-      >
-        Submit Project
-      </Button>
-    </form>
-  );
-}
-
-interface FormInputProps {
-  labelName: string;
-  placeholder: string;
-  onEdit: (text: string) => void;
-  isTextArea?: boolean;
-}
-function FormInput({
-  labelName,
-  placeholder,
-  onEdit,
-  isTextArea = false,
-}: FormInputProps) {
-  return (
-    <div className="flex flex-col gap-2 text-sm">
-      <label className="">{labelName}</label>
-
-      {isTextArea ? (
-        <textarea
-          className="text-gray-800 placeholder:text-xs"
-          onChange={(e) => onEdit(e.target.value)}
-          placeholder={placeholder}
-        />
-      ) : (
-        <input
-          className="text-gray-800 placeholder:text-xs"
-          onChange={(e) => onEdit(e.target.value)}
-          type="text"
-          placeholder={placeholder}
-        />
-      )}
     </div>
   );
 }
