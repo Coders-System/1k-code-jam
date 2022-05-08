@@ -23,6 +23,7 @@ export const prizes: Prize[] = [
 ];
 
 export const rules: string[] = [
+  "You must be a member of the Coder's System Discord server before the server hit 1k members, in order to participate",
   "No development/coding may start before the actual date and time of the Code Jam.",
   "Your project must be solo, you cannot have a teammate.",
   "You are allowed to use third party tools and libraries, but try your best to write most of the code.",
