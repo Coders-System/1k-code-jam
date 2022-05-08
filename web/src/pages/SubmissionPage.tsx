@@ -10,7 +10,9 @@ import { getTimeUntilSubmission } from "../http/time";
 
 export function SubmissionPage() {
   const user = useContext(authContext);
-  const [isProjectSubmitted, setIsProjectSubmitted] = useState(false);
+  const [isProjectSubmitted, setIsProjectSubmitted] = useState(
+    user?.submitted || false
+  );
   const [remaining, setRemaining] = useState([0, 0, 0, 0, 0]);
 
   const [countdown, setCountdown] = useState(0);

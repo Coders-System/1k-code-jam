@@ -4,4 +4,5 @@ export interface User {
   discriminator: string;
   email: string;
   created_at: number;
+  submitted: boolean;
 }
