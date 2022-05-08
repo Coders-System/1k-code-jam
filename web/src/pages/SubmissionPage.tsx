@@ -23,7 +23,7 @@ export function SubmissionPage() {
     return (
       remaining.reduce((p, c) => {
         return (p += c);
-      }) == 0
+      }) === 0
     );
   };
 

@@ -16,7 +16,7 @@ export function OauthCallbackPage() {
     if (parsedQuery.code) {
       logInUser();
     }
-  }, []);
+  }, [parsedQuery]);
 
   if (!parsedQuery.code) {
     window.location.href = "/";
