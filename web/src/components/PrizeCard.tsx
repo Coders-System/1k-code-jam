@@ -1,4 +1,4 @@
-import {Prize} from "../constants";
+import { Prize } from "../constants";
 
 interface PrizeCardProps {
   prize: Prize;

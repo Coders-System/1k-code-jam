@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
-import {PrizeCard} from "../components/PrizeCard";
+import { PrizeCard } from "../components/PrizeCard";
 import { Section } from "../components/Section";
 import { DISCORD_INVITE_URL, prizes, rules } from "../constants";
 import { authContext, getOAuthCallbackURL } from "../http/auth";
