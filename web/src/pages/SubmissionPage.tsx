@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { SubmissionSupport } from "../components/SubmissionSupport";
 import { Timer } from "../components/Timer";
+import { authContext } from "../http/auth";
 import { getTimeUntilSubmission } from "../http/time";
 
 export function SubmissionPage() {
+  const user = useContext(authContext);
   const [isProjectSubmitted, setIsProjectSubmitted] = useState(false);
   const [remaining, setRemaining] = useState([0, 0, 0, 0, 0]);
 
@@ -27,15 +30,28 @@ export function SubmissionPage() {
     );
   };
 
+  if (user === null) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div className="h-screen flex flex-col">
       <Navbar />
-      <main className="w-full px-6 lg:px-48 mb-auto">
-        <h1 className="font-heading text-xl text-center">
+      <main className="w-full container mx-auto mb-auto mt-8">
+        <h2 className="font-heading text-5xl mb-4 text-center">
           Participant Dashboard
-        </h1>
-
-        <Timer onCountdown={(r) => setRemaining(r)} countdown={countdown} />
+        </h2>
+        <h3 className="text-2xl text-center my-8">
+          Welcome, {user?.username}#{user?.discriminator}
+        </h3>
+        {countdown && (
+          <div className="my-4">
+            <h1 className="text-center text-lg mb-2 font-semibold">
+              Time Remaining
+            </h1>
+            <Timer onCountdown={(r) => setRemaining(r)} countdown={countdown} />
+          </div>
+        )}
 
         {!isProjectSubmitted && isTimeOver() ? (
           <Timeover />
@@ -73,9 +89,9 @@ function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
   const [description, setDescription] = useState("");
   const [videoLink, setVideoLink] = useState("");
   return (
-    <form className="mb-8">
-      <h2 className="font-semibold text-lg mb-3">
-        Project Ready ? <span className="font-bold">Submit Now</span>
+    <form className="my-8 w-full xl:w-8/12 mx-auto">
+      <h2 className="font-semibold text-lg my-5">
+        Is your project ready? <span className="font-bold">Submit Now</span>
       </h2>
       <div className="flex flex-col gap-3">
         <FormInput
@@ -110,7 +126,7 @@ function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
           });
           onSubmit();
         }}
-        className="mt-3 w-full"
+        className="mt-6 w-full"
       >
         Submit Project
       </Button>
@@ -131,7 +147,7 @@ function FormInput({
   isTextArea = false,
 }: FormInputProps) {
   return (
-    <div className="flex flex-col  text-sm">
+    <div className="flex flex-col gap-2 text-sm">
       <label className="">{labelName}</label>
 
       {isTextArea ? (

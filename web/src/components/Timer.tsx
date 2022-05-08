@@ -41,9 +41,9 @@ export function Timer({
 
   return (
     <p
-      className={`font-heading my-12 text-center text-3xl ${
+      className={`text-center text-3xl ${
         isWarningTime() ? "text-red-500" : ""
       }`}
-    >{`${remaining.join(" : ")}`}</p>
+    >{`${remaining[0]}d:${remaining[1]}h:${remaining[2]}m:${remaining[3]}s`}</p>
   );
 }

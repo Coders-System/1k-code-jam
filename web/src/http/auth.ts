@@ -1,5 +1,7 @@
+import { createContext } from "react";
 import { httpClient } from ".";
 import { ApiRoutes } from "./routes";
+import { User } from "./types";
 
 export async function sendOAuthCallback(code: string) {
   return await httpClient.post(ApiRoutes.OAUTH_CALLBACK, {
@@ -17,11 +19,14 @@ export async function logout() {
 }
 
 // Or null if not logged in
-export async function getLoggedInUserId() {
+export async function getLoggedInUser() {
   try {
-    const userId = (await httpClient.get(ApiRoutes.ME)).data.id;
-    return userId;
+    const user = (await httpClient.get(ApiRoutes.ME)).data;
+    return user;
   } catch (e) {
     return null;
   }
 }
+
+// type User when auth is valid, null when auth is invalid, undefined when auth req has not been sent
+export const authContext = createContext<User | null | undefined>(undefined);

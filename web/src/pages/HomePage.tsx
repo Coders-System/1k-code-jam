@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { Section } from "../components/Section";
 import { DISCORD_INVITE_URL, Prize, prizes, rules } from "../constants";
-import { getOAuthCallbackURL } from "../http/auth";
+import { authContext, getOAuthCallbackURL } from "../http/auth";
 
 export function HomePage() {
   // State for holding Oauth url
   const [oauthURL, setOauthUrl] = useState<string | null>();
+  const user = useContext(authContext);
 
   useEffect(() => {
     getOAuthCallbackURL().then((url) => setOauthUrl(url));
@@ -16,7 +17,7 @@ export function HomePage() {
 
   return (
     <div className="flex flex-col bg-darkPurple">
-      <Navbar />
+      <Navbar oauthURL={oauthURL} />
       <section
         id="hero"
         className="h-[85vh] flex items-center flex-col justify-center"
@@ -26,13 +27,17 @@ export function HomePage() {
           1K Members <span className="text-orange">CODE JAM</span>
         </h1>
         <div className="flex gap-4 mt-8">
-          <Button
-            onClick={() =>
-              oauthURL ? (window.location.href = oauthURL) : null
-            }
-          >
-            Register Now
-          </Button>
+          {user ? (
+            <Button href="/dashboard">Dashboard</Button>
+          ) : (
+            <Button
+              onClick={() =>
+                oauthURL ? (window.location.href = oauthURL) : null
+              }
+            >
+              Register Now
+            </Button>
+          )}
           <Button href={DISCORD_INVITE_URL}>Join The Discord</Button>
         </div>
       </section>

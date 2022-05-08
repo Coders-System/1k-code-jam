@@ -1,50 +1,34 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { getLoggedInUserId } from "./http/auth";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { authContext, getLoggedInUser } from "./http/auth";
+import { User } from "./http/types";
 import { HomePage } from "./pages/HomePage";
 import { OauthCallbackPage } from "./pages/OauthCallbackPage";
 import { SubmissionPage } from "./pages/SubmissionPage";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/submission"
-          element={
-            <RequireAuth>
-              <SubmissionPage />
-            </RequireAuth>
-          }
-        />
-        <Route path="/oauth/callback" element={<OauthCallbackPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
-function RequireAuth({ children }: { children: JSX.Element }) {
-  const [auth, setAuth] = useState<number | null>(null);
-  const [pending, setPending] = useState(true);
-
+  const [auth, setAuth] = useState<User | null | undefined>(undefined);
   useEffect(() => {
-    getLoggedInUserId().then((e) => {
-      setAuth(e);
-
-      setPending(false);
-    });
+    getLoggedInUser()
+      .then((e) => {
+        setAuth(e);
+      })
+      .catch(() => {
+        setAuth(null);
+      });
   }, []);
 
-  if (pending) {
-    return null;
-  }
-
-  if (auth) {
-    return children;
-  } else {
-    return <Navigate to="/" />;
-  }
+  return (
+    <authContext.Provider value={auth}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<SubmissionPage />} />
+          <Route path="/oauth/callback" element={<OauthCallbackPage />} />
+        </Routes>
+      </BrowserRouter>
+    </authContext.Provider>
+  );
 }
 
 export default App;

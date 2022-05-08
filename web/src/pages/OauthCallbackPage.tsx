@@ -9,7 +9,7 @@ export function OauthCallbackPage() {
     const logInUser = async () => {
       const resp = await sendOAuthCallback(parsedQuery.code as string);
       if (resp.status === 200) {
-        window.location.href = "/submission";
+        window.location.href = "/dashboard";
       }
     };
 

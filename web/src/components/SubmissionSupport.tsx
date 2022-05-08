@@ -2,9 +2,9 @@ import { Button } from "../components/Button";
 
 export function SubmissionSupport() {
   return (
-    <div className="my-3 flex flex-row lg:flex-col items-center gap-6">
-      <p className="text-center font-bold">Having issues ?</p>
-      <Button className="h-min grow">Contact support</Button>
+    <div className="mt-16 mb-4 flex flex-row items-center justify-center gap-3">
+      <p className="text-center font-bold">Having issues?</p>
+      <Button className="h-min ">Contact support</Button>
     </div>
   );
 }
