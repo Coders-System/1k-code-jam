@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import { FormInput } from "./FormInput";
 import { submitProject } from "../../http/submit";
 import { suggestions } from "../../tags";
+import { RICKROLL_ID } from "../../constants";
 
 export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
   const [techStack, setTechStack] = useState<Tag[]>([]);
@@ -106,6 +107,14 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
       }}
       onSubmit={async (values, { setSubmitting }) => {
         const { name, description, sourceLink, videoLink } = values;
+
+        if (
+          sourceLink.includes(RICKROLL_ID) ||
+          videoLink.includes(RICKROLL_ID)
+        ) {
+          window.location.href = `https://youtube.com/watch?v=${RICKROLL_ID}`;
+          return;
+        }
 
         await submitProject({
           project_name: name,

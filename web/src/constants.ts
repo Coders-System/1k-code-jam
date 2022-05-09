@@ -2,6 +2,7 @@ export const DISCORD_INVITE_URL = "https://discord.gg/3chuca3EMh";
 export const API_ENDPOINT = "https://api.ahnafzamil.com/code_jam";
 export const SERVER_LOGO =
   "https://cdn.discordapp.com/icons/783359069993435146/a_2088b7d950f4f75068559107738f69e3.gif?size=128";
+export const RICKROLL_ID = "dQw4w9WgXcQ";
 
 export interface Prize {
   position: number;
