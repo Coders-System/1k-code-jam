@@ -7,7 +7,7 @@ interface Props {
   oauthURL?: string | null;
 }
 
-export const Navbar: React.FC<Props> = ({ oauthURL }) => {
+export function Navbar({ oauthURL }: Props) {
   const user = useContext(authContext);
 
   return (
@@ -50,4 +50,4 @@ export const Navbar: React.FC<Props> = ({ oauthURL }) => {
       </ul>
     </nav>
   );
-};
+}

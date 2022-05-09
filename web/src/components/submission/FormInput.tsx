@@ -28,6 +28,7 @@ export function FormInput({
           className="text-gray-800 placeholder:text-xs"
           onChange={onChange}
           placeholder={placeholder}
+          rows={5}
         />
       ) : (
         <input
