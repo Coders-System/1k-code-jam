@@ -8,7 +8,13 @@ interface ButtonProps {
   className?: string;
 }
 
-export function Button({type, className, href, onClick, children }: ButtonProps) {
+export function Button({
+  type,
+  className,
+  href,
+  onClick,
+  children,
+}: ButtonProps) {
   const _className = `
   block
   bg-orange

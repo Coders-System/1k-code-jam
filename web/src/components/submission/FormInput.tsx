@@ -3,8 +3,8 @@ interface FormInputProps {
   name: string;
   placeholder: string;
   value: any;
-  onChange: any,
-  error? : string | false,
+  onChange: any;
+  error?: string | false;
   isTextArea?: boolean;
 }
 
@@ -23,24 +23,23 @@ export function FormInput({
 
       {isTextArea ? (
         <textarea
-        value={value}
-        name={name}
+          value={value}
+          name={name}
           className="text-gray-800 placeholder:text-xs"
           onChange={onChange}
           placeholder={placeholder}
         />
       ) : (
-
         <input
-        value={value}
-        name={name}
+          value={value}
+          name={name}
           className="text-gray-800 placeholder:text-xs"
           onChange={onChange}
           type="text"
           placeholder={placeholder}
         />
       )}
-      {error ? <p className="text-red-500">{error}</p> : null }
+      {error ? <p className="text-red-500">{error}</p> : null}
     </div>
   );
 }
