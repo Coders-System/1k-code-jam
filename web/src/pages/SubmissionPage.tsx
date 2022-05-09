@@ -13,20 +13,27 @@ import { getTimeUntilSubmission } from "../http/time";
 export function SubmissionPage() {
   const user = useContext(authContext);
   const [loading, setLoading] = useState(true);
-  const [isProjectSubmitted, setIsProjectSubmitted] = useState(
+  const [isProjectSubmitted, _setIsProjectSubmitted] = useState(
     user?.submitted || false
   );
   const [remaining, setRemaining] = useState([0, 0, 0, 0, 0]);
-
   const [countdown, setCountdown] = useState(0);
 
   useEffect(() => {
     getTimeUntilSubmission().then((e) => {
       console.log(e);
       setCountdown(e);
+      _setIsProjectSubmitted(user?.submitted || false)
+
       setLoading(false);
     });
   }, []);
+
+  useEffect(
+      () => {
+          _setIsProjectSubmitted(user?.submitted || false)
+      },[user]
+  )
 
   const isTimeOver = () => {
     return (
@@ -69,7 +76,9 @@ export function SubmissionPage() {
             {!loading && !isProjectSubmitted && isTimeOver() ? (
               <Timeover />
             ) : !isProjectSubmitted ? (
-              <SubmissionForm onSubmit={() => setIsProjectSubmitted(true)} />
+            <><p>{isProjectSubmitted}</p>
+              <SubmissionForm onSubmit={() => {console.log("asdF"); _setIsProjectSubmitted(true)}} />
+              </>
             ) : (
               <Thanks />
             )}

@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     getLoggedInUser()
       .then((e) => {
+          console.log({e})
         setAuth(e);
       })
       .catch(() => {
