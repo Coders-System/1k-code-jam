@@ -3,11 +3,12 @@ import { ReactElement } from "react";
 interface ButtonProps {
   children: ReactElement | ReactElement[] | string;
   href?: string;
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
   className?: string;
 }
 
-export function Button({ className, href, onClick, children }: ButtonProps) {
+export function Button({type, className, href, onClick, children }: ButtonProps) {
   const _className = `
   block
   bg-orange
@@ -25,7 +26,7 @@ export function Button({ className, href, onClick, children }: ButtonProps) {
     );
   } else {
     return (
-      <button className={_className} onClick={onClick}>
+      <button type={type} className={_className} onClick={onClick}>
         {children}
       </button>
     );

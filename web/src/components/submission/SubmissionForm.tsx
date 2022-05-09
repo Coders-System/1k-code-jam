@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { Button } from "../Button";
-import { FormInput } from "./FormInput";
+//import { FormInput } from "./FormInput";
 import { WithContext as ReactTags, Tag } from "react-tag-input";
+import {Formik} from "formik";
+import {FormInput} from "./FormInput";
 //import {suggestions} from "../../tags";
 
 export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
-  const [name, setName] = useState("");
   const [techStack, setTechStack] = useState<Tag[]>([]);
   const [tagError, setTagError] = useState<{
     text: string;
     disable: boolean;
   } | null>(null);
-  const [description, setDescription] = useState("");
-  const [videoLink, setVideoLink] = useState("");
-  const [sourceLink, setSourceLink] = useState("");
 
   const handleDelete = (i: number) => {
     if (techStack.length <= 10) {
@@ -61,14 +59,79 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
     console.log("The tag at index " + index + " was clicked");
   };
 
+
   return (
-    <form className="my-8 w-full xl:w-8/12 mx-auto">
+      <Formik
+      initialValues={{ name: '', description: '',videoLink:'',sourceLink: '' }}
+      validate={(values) => {
+          const errors:any = {}
+          if (tagError) {
+              errors.tagError = tagError
+          }
+          if (techStack.length <= 0) {
+              setTagError({text:"Atleast one tech stack tag required.",disable: false})
+              errors.tagError = "Atleast one tech stack tag required."
+          }
+          if (values.name.length < 3) {
+              errors.name="Name should be more than 3 characters."
+          }
+          if (values.name.length > 60) {
+              errors.name="Name should be less than 60 characters."
+          }
+          if (values.description.length < 100) {
+              errors.description="description should be atleast 100 characters"
+          }
+          if (values.description.length > 2000) {
+              errors.description="description should be less than 2000 characters"
+          }
+
+const urlRegex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/);
+
+
+          if (!values.sourceLink.match(urlRegex)) {
+    errors.sourceLink = "must be a link"
+}
+          if (!values.videoLink.match(urlRegex)) {
+    errors.videoLink = "must be a link"
+}
+
+          return errors
+      }}
+      onSubmit={(values,{setSubmitting}) => {
+
+          const {name,description,sourceLink,videoLink} = values;
+
+          console.log({
+            name,
+            techStack: techStack.map((t) => t.text),
+            description,
+            videoLink,
+            sourceLink,
+          });
+          setSubmitting(false)
+          onSubmit();
+      }}
+      >
+      {
+          ({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleSubmit
+          }) => {
+
+          
+    return <form onSubmit={handleSubmit} className="my-8 w-full xl:w-8/12 mx-auto">
       <h2 className="font-semibold text-lg my-5">
         Is your project ready? <span className="font-bold">Submit Now</span>
       </h2>
       <div className="flex flex-col gap-3">
         <FormInput
-          onEdit={(s) => setName(s)}
+          onChange={handleChange}
+          error={errors.name && touched.name && errors.name}
+          name="name"
+          value={values.name}
           labelName="Project Name:"
           placeholder="Enter your project's name"
         />
@@ -86,37 +149,42 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
         </div>
 
         <FormInput
-          onEdit={(s) => setDescription(s)}
+          onChange={handleChange}
+          name="description"
+          error={errors.description && touched.description && errors.description}
+          value={values.description}
           labelName="Description: "
           placeholder="Enter your project's description"
           isTextArea={true}
         />
         <FormInput
-          onEdit={(s) => setVideoLink(s)}
+          onChange={handleChange}
+          error={errors.videoLink && touched.videoLink && errors.videoLink}
+          value={values.videoLink}
+          name="videoLink"
           labelName="Video Link: "
           placeholder="Link to your project showcase video"
         />
         <FormInput
-          onEdit={(s) => setSourceLink(s)}
+          onChange={handleChange}
+          value={values.sourceLink}
+          error={errors.sourceLink && touched.sourceLink && errors.sourceLink}
+          name="sourceLink"
           labelName="Source Code Link: "
           placeholder="Link to your project's source code (GitHub, GitLab etc)"
         />
       </div>
       <Button
-        onClick={() => {
-          console.log({
-            name,
-            techStack: techStack.map((t) => t.text),
-            description,
-            videoLink,
-            sourceLink,
-          });
-          onSubmit();
-        }}
+      type="submit"
         className="mt-6 w-full"
       >
         Submit Project
       </Button>
     </form>
+
+}
+      }
+
+    </Formik>
   );
 }
