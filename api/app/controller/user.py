@@ -46,7 +46,11 @@ def oauth_callback():
 
     resp = make_response("Logged in")
     resp.set_cookie(
-        "auth", jwt_token, httponly=True, expires=datetime.now() + timedelta(days=5)
+        "auth",
+        jwt_token,
+        httponly=True,
+        expires=datetime.now() + timedelta(days=5),
+        samesite="None",
     )
 
     return resp
