@@ -4,5 +4,5 @@ export const ApiRoutes = {
   TIME: "/submissions/time",
   ME: "/users/@me",
   LOGOUT: "/users/logout",
-  SUBMIT: "/submissions/submit"
+  SUBMIT: "/submissions/submit",
 };

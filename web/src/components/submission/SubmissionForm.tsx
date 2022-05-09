@@ -4,7 +4,7 @@ import { Button } from "../Button";
 import { WithContext as ReactTags, Tag } from "react-tag-input";
 import { Formik } from "formik";
 import { FormInput } from "./FormInput";
-import {submitProject} from "../../http/submit";
+import { submitProject } from "../../http/submit";
 //import {suggestions} from "../../tags";
 
 export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
@@ -116,12 +116,12 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
           sourceLink,
         });
         await submitProject({
-            project_name: name,
-            description: description,
-            tech_stack: techStack.map(t => t.text),
-            video_link: videoLink,
-            code_link: sourceLink
-        })
+          project_name: name,
+          description: description,
+          tech_stack: techStack.map((t) => t.text),
+          video_link: videoLink,
+          code_link: sourceLink,
+        });
         setSubmitting(false);
         onSubmit();
       }}

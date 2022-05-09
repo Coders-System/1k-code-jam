@@ -23,17 +23,15 @@ export function SubmissionPage() {
     getTimeUntilSubmission().then((e) => {
       console.log(e);
       setCountdown(e);
-      _setIsProjectSubmitted(user?.submitted || false)
+      _setIsProjectSubmitted(user?.submitted || false);
 
       setLoading(false);
     });
   }, []);
 
-  useEffect(
-      () => {
-          _setIsProjectSubmitted(user?.submitted || false)
-      },[user]
-  )
+  useEffect(() => {
+    _setIsProjectSubmitted(user?.submitted || false);
+  }, [user]);
 
   const isTimeOver = () => {
     return (
@@ -76,8 +74,14 @@ export function SubmissionPage() {
             {!loading && !isProjectSubmitted && isTimeOver() ? (
               <Timeover />
             ) : !isProjectSubmitted ? (
-            <><p>{isProjectSubmitted}</p>
-              <SubmissionForm onSubmit={() => {console.log("asdF"); _setIsProjectSubmitted(true)}} />
+              <>
+                <p>{isProjectSubmitted}</p>
+                <SubmissionForm
+                  onSubmit={() => {
+                    console.log("asdF");
+                    _setIsProjectSubmitted(true);
+                  }}
+                />
               </>
             ) : (
               <Thanks />
