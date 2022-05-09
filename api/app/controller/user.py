@@ -51,6 +51,7 @@ def oauth_callback():
         httponly=True,
         expires=datetime.now() + timedelta(days=5),
         samesite="None",
+        secure=True,
     )
 
     return resp
