@@ -9,9 +9,7 @@ load_dotenv()
 class AppConfig:
     SECRET_KEY = os.environ["SECRET_KEY"]
     SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URI"]
-    SUBMIT_DATE = datetime(2022, 5, 14, hour=20).astimezone(
-        timezone.utc
-    )  # Just an example: 8pm, 14th May, 2022
+    SUBMIT_DATE = datetime(2022, 5, 14, hour=15).astimezone(timezone.utc)
 
 
 class OauthConfig:
