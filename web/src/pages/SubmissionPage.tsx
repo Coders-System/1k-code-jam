@@ -21,7 +21,6 @@ export function SubmissionPage() {
 
   useEffect(() => {
     getTimeUntilSubmission().then((e) => {
-      console.log(e);
       setCountdown(e);
       _setIsProjectSubmitted(user?.submitted || false);
 
@@ -59,7 +58,7 @@ export function SubmissionPage() {
           <></>
         ) : (
           <>
-            {countdown && (
+            {countdown && !isProjectSubmitted && (
               <div className="my-4">
                 <h1 className="text-center text-lg mb-2 font-semibold">
                   Time Remaining
@@ -78,7 +77,6 @@ export function SubmissionPage() {
                 <p>{isProjectSubmitted}</p>
                 <SubmissionForm
                   onSubmit={() => {
-                    console.log("asdF");
                     _setIsProjectSubmitted(true);
                   }}
                 />

@@ -107,13 +107,6 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
       onSubmit={async (values, { setSubmitting }) => {
         const { name, description, sourceLink, videoLink } = values;
 
-        console.log({
-          name,
-          techStack: techStack.map((t) => t.text),
-          description,
-          videoLink,
-          sourceLink,
-        });
         await submitProject({
           project_name: name,
           description: description,

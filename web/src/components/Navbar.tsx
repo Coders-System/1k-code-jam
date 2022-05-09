@@ -11,7 +11,7 @@ export function Navbar({ oauthURL }: Props) {
   const user = useContext(authContext);
 
   return (
-    <nav className="bg-darkPurple container mx-auto px-2 py-3 flex items-center justify-between">
+    <nav className="bg-darkPurple container mx-auto xl:px-2 py-3 flex items-center justify-between">
       <a href="/" className="flex items-center gap-3">
         <img src={SERVER_LOGO} className="rounded-full h-10" alt="" />
         <p className="text-lg">Coder's System</p>
