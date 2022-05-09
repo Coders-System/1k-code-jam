@@ -55,9 +55,7 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
     setTechStack(newTags);
   };
 
-  const handleTagClick = (index: number) => {
-    console.log("The tag at index " + index + " was clicked");
-  };
+  const handleTagClick = (index: number) => {};
 
   return (
     <Formik
@@ -74,10 +72,10 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
         }
         if (techStack.length <= 0) {
           setTagError({
-            text: "Atleast one tech stack tag required.",
+            text: "At least one tech stack tag required.",
             disable: false,
           });
-          errors.tagError = "Atleast one tech stack tag required.";
+          errors.tagError = "At least one tech stack tag required.";
         }
         if (values.name.length < 3) {
           errors.name = "Name should be more than 3 characters.";
@@ -86,11 +84,11 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
           errors.name = "Name should be less than 60 characters.";
         }
         if (values.description.length < 100) {
-          errors.description = "description should be atleast 100 characters";
+          errors.description = "Description should be at least 100 characters";
         }
         if (values.description.length > 2000) {
           errors.description =
-            "description should be less than 2000 characters";
+            "Description should be less than 2000 characters";
         }
 
         const urlRegex = new RegExp(
@@ -98,10 +96,10 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
         );
 
         if (!values.sourceLink.match(urlRegex)) {
-          errors.sourceLink = "must be a link";
+          errors.sourceLink = "Must be a link";
         }
         if (!values.videoLink.match(urlRegex)) {
-          errors.videoLink = "must be a link";
+          errors.videoLink = "Must be a link";
         }
 
         return errors;
@@ -140,7 +138,7 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
                 placeholder="Enter your project's name"
               />
 
-              <div className="flex flex-col gap-2 text-sm">
+              <div className="flex flex-col gap-1 text-sm">
                 <label className="">Tech Stack:</label>
                 <ReactTags
                   handleAddition={handleAddition}
@@ -148,6 +146,11 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
                   handleDrag={handleDrag}
                   handleTagClick={handleTagClick}
                   tags={techStack}
+                  classNames={{
+                    tagInputField:
+                      "mt-2 placeholder:text-xs w-full text-gray-800",
+                    tagInput: "w-full",
+                  }}
                 />
                 <p className="text-red-500">{tagError?.text}</p>
               </div>
