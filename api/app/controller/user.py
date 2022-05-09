@@ -61,5 +61,5 @@ def oauth_callback():
 def logout_user():
     """Logs out a user by resetting the cookie"""
     resp = make_response("ok")
-    resp.set_cookie("auth", "", expires=0)
+    resp.set_cookie("auth", "", expires=0, httponly=True, samesite="None", secure=True)
     return resp
