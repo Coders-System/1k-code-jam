@@ -27,14 +27,13 @@ export async function getLoggedInUser() {
     return null;
   }
   //return {
-    //id: "a",
-    //username: "asdf",
-    //discriminator: "d#2",
-    //email:"asd",
-    //created_at: 23,
-    //submitted: false
+  //id: "a",
+  //username: "asdf",
+  //discriminator: "d#2",
+  //email:"asd",
+  //created_at: 23,
+  //submitted: false
   //}
-
 }
 
 // type User when auth is valid, null when auth is invalid, undefined when auth req has not been sent

@@ -56,7 +56,6 @@
   margin: 0 5px;
   border-radius: 2px;
 
-
   @apply bg-orange text-black;
 }
 .ReactTags__selected a.ReactTags__remove {
