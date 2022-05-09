@@ -35,6 +35,14 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
       return;
     }
 
+    if (tag.text.includes(",")) {
+      setTagError({
+        text: "Tag can not contain `,`",
+        disable: false,
+      });
+      return;
+    }
+
     setTagError(null);
     setTechStack([...techStack, tag]);
   };
