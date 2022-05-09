@@ -20,12 +20,21 @@ export async function logout() {
 
 // Or null if not logged in
 export async function getLoggedInUser() {
-  try {
-    const user = (await httpClient.get(ApiRoutes.ME)).data;
-    return user;
-  } catch (e) {
-    return null;
+  //try {
+    //const user = (await httpClient.get(ApiRoutes.ME)).data;
+    //return user;
+  //} catch (e) {
+    //return null;
+  //}
+  return {
+    id: "a",
+    username: "asdf",
+    discriminator: "d#2",
+    email:"asd",
+    created_at: 23,
+    submitted: false
   }
+
 }
 
 // type User when auth is valid, null when auth is invalid, undefined when auth req has not been sent
