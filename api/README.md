@@ -17,6 +17,7 @@ Route prefix: `/users`
 
 Route prefix: `/submissions`
 
-| Endpoint | Method | Description                                                 |
-| -------- | ------ | ----------------------------------------------------------- |
-| `/time`  | `GET`  | Returns the remaining milliseconds till submission deadline |
+| Endpoint  | Method | Description                                                 |
+| --------- | ------ | ----------------------------------------------------------- |
+| `/time`   | `GET`  | Returns the remaining milliseconds till submission deadline |
+| `/submit` | `POST` | Submits the project of a participant                        |
