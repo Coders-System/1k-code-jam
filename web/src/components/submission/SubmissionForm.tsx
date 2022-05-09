@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Button } from "../Button";
-//import { FormInput } from "./FormInput";
 import { WithContext as ReactTags, Tag } from "react-tag-input";
 import { Formik } from "formik";
 import { FormInput } from "./FormInput";
 import { submitProject } from "../../http/submit";
-//import {suggestions} from "../../tags";
+import { suggestions } from "../../tags";
 
 export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
   const [techStack, setTechStack] = useState<Tag[]>([]);
@@ -154,10 +153,13 @@ export function SubmissionForm({ onSubmit }: { onSubmit: () => void }) {
                   handleDrag={handleDrag}
                   handleTagClick={handleTagClick}
                   tags={techStack}
+                  suggestions={suggestions}
                   classNames={{
                     tagInputField:
                       "mt-2 placeholder:text-xs w-full text-gray-800",
                     tagInput: "w-full",
+                    suggestions: "text-black bg-white px-2",
+                    activeSuggestion: "text-black bg-gray-300 cursor-pointer",
                   }}
                 />
                 <p className="text-red-500">{tagError?.text}</p>
