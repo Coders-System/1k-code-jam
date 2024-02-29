@@ -10,6 +10,7 @@ class User(db.Model):
     discriminator = db.Column(db.String(4), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     submitted = db.Column(db.Boolean, default=False, nullable=False)
+    voted = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.BigInteger, default=time.time, nullable=False)
     submission = db.relationship("Submission", backref="users")
 

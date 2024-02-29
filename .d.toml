@@ -1,5 +1,5 @@
 ["api"]
-run ="python wsgi.py"
+run ="flask run --debug"
 
 ["web"]
 build = "npm run build"

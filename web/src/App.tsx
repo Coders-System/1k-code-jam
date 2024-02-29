@@ -6,6 +6,7 @@ import { NotFoundPage } from "./pages/404";
 import { HomePage } from "./pages/HomePage";
 import { OauthCallbackPage } from "./pages/OauthCallbackPage";
 import { SubmissionPage } from "./pages/SubmissionPage";
+import { VotePage } from "./pages/VotePage";
 
 function App() {
   const [auth, setAuth] = useState<User | null | undefined>(undefined);
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<SubmissionPage />} />
+          <Route path="/vote" element={<VotePage />} />
           <Route path="/oauth/callback" element={<OauthCallbackPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
