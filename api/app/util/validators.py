@@ -1,5 +1,5 @@
 from flask import abort
-from typing import List
+from typing import Any, List
 
 import re
 
@@ -41,7 +41,7 @@ def validate_project_name(inp: str):
     return inp
 
 
-def validate_tech_stack(inp: any | List[str]):
+def validate_tech_stack(inp: Any | List[str]):
     if (not isinstance(inp, list)) or len(inp) > 10 or len(inp) < 1:
         abort(400)
 
